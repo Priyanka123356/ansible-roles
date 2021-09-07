@@ -1,0 +1,11 @@
+---
+- name: Web Server
+  hosts: web
+   vars_prompt:
+    - name: "myname"
+      prompt: "Enter myname:"
+      private: false
+
+  roles:
+    - role
+    - geerlingguy.java
