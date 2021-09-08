@@ -10,16 +10,20 @@
     name={{ packname }}
     state=started
 - name: Display script contents
-  shell: ./script.sh
-  register: command_output
-- name: print to index.html
-- name: Copy index.j2
+  command: echo "Hello"
+  register: command_out
+- set_fact:
+      command_output: "{{command_out.stdout_lines}}"
+- name: msg
+  debug:
+    var: command_out.stdout_lines
+- name: Copy index.html.j2
   ansible.builtin.template:
-    src: index.j2
+    src: index.html.j2
     dest: /var/www/html/index.html
 - name: Copy httpd.j2
   ansible.builtin.template:
-    src: httpd.j2
+    src: httpd.conf.j2
     dest: /etc/httpd/conf/httpd.conf
   notify:
     - restart webserver after every change
