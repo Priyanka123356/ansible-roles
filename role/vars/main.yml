@@ -4,3 +4,4 @@
 packname: httpd
 port: 8080
 myname: Priyanka
+index: "{{command_output}}"
