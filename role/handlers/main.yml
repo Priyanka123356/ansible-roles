@@ -3,4 +3,4 @@
 - name: restart webserver after every change
   ansible.builtin.service:
     name: {{servicename}}
-    status: restarted
+    status= restarted
